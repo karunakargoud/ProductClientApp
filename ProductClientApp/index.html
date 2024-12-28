@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+    <script src="Scripts/jquery-3.7.1.js"></script>
+    <title>jQuery Client</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ulProducts = $('#ulProducts');
+            $('#btnGetProducts').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:59420/api/Product',
+                    dataType:'json',
+                    success: function (productdata) {
+                        ulProducts.empty();
+                        $.each(productdata, function (index, val) {
+                            ulProducts.append('<li> Product Id - ' +
+                                val.ProductId + " Name - " +
+                                val.ProductName + " Quantity - " +
+                                val.Quantity + " Price " +
+                                val.Price + '</li>');
+
+                        });
+                    }
+                })
+            });
+
+        $('#btnClear').click(function () {
+            ulProducts.empty();
+        });
+        });
+    </script>
+</head>
+<body>
+    <input id="btnGetProducts"
+           type="button"
+           value="Get All Products"
+           />
+    <input id="btnClear"
+           type="button"
+           value="Clear"
+           />
+    <ul id="ulProducts"/>
+</body>
+<!--<head>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-3.7.1.js"></script>
+    <title>jQuery Client</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ulProducts = $('#ulProducts');
+            $('#btnGetProducts').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:59420/api/Product',
+                    dataType: 'json',
+                    success: function (productdata) {
+                        ulProducts.empty();
+                        $.each(productdata, function (index, val) {
+                            ulProducts.append('<li> Product Id - ' +
+                                val.ProductId + " Name - " +
+                                val.ProductName + " Quantity - " +
+                                val.Quantity + "   Price " +
+                                val.Price + '</li>');
+                        });
+                    }
+                })
+            });
+
+            $('#btnClear').click(function () {
+                ulProducts.empty();
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <input id="btnGetProducts" type="button" value="Get All Products" />
+
+    <input id="btnClear" type="button" value="Clear" />
+
+    <ul id="ulProducts" />
+
+</body>-->
+
+</html>
